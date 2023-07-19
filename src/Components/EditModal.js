@@ -17,7 +17,7 @@ function EditModal({ selectedPerson, closeEditModal }) {
     console.log("HPTAAAA");
 
     try {
-      const response = await axios.put("localhost:5000", formData);
+      const response = await axios.put("http://localhost:5000/", formData);
       console.log(response.data); // Manejar la respuesta del backend
       closeEditModal(); // Cerrar el formulario flotante
     } catch (error) {
