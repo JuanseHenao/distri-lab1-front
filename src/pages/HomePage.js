@@ -35,6 +35,7 @@ function HomePage() {
   const fetchData = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:5000");
+      console.log(response);
       setData(response.data);
       /* setData([
         { id: 1, name: "John Doe", email: "johndoe@example.com" },
