@@ -40,17 +40,7 @@ function HomePage() {
 
   const fetchData = async () => {
     try {
-      const requestInterceptor = axios.interceptors.request.use((config) => {
-        // Log the request data
-        console.log("Request:", config);
-        console.log("Request URL:", config.url);
-        console.log("Request Method:", config.method);
-        console.log("Request Headers:", config.headers);
-
-        // You must return the config object after logging it
-        return config;
-      });
-      const response = await axios.get(process.env.API_URL, config);
+      const response = await axios.get(process.env.REACT_APP_API_URL, config);
       console.log(response);
       setData(response.data);
       setData([

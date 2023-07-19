@@ -24,7 +24,10 @@ function CreateModal({ closeCreateModal }) {
     }
 
     try {
-      const response = await axios.post(process.env.API_URL, formData);
+      const response = await axios.post(
+        process.env.REACT_APP_API_URL,
+        formData
+      );
       console.log(response.data); // Manejar la respuesta del backend
       closeCreateModal(); // Cerrar el formulario flotante
     } catch (error) {
