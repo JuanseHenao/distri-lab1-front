@@ -40,7 +40,7 @@ function HomePage() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://18.228.43.72:5000", config);
+      const response = await axios.get("http://localhost:5000", config);
       console.log(response);
       setData(response.data);
       /* setData([
