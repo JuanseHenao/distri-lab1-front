@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import "./index.css"; // Importa tu archivo CSS personalizado aquí
+import HomePage from "./pages/HomePage";
+
+// Componentes para las diferentes páginas
+
+const AboutPage = () => (
+  <div>
+    <h1>Acerca de</h1>
+    <p>Información sobre nosotros</p>
+  </div>
+);
+
+const ContactPage = () => (
+  <div>
+    <h1>Contacto</h1>
+    <p>Información de contacto</p>
+  </div>
+);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <HomePage />;
 }
 
 export default App;
