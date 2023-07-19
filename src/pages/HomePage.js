@@ -40,15 +40,25 @@ function HomePage() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:5000", config);
+      const requestInterceptor = axios.interceptors.request.use((config) => {
+        // Log the request data
+        console.log("Request:", config);
+        console.log("Request URL:", config.url);
+        console.log("Request Method:", config.method);
+        console.log("Request Headers:", config.headers);
+
+        // You must return the config object after logging it
+        return config;
+      });
+      const response = await axios.get(process.env.API_URL, config);
       console.log(response);
       setData(response.data);
-      /* setData([
+      setData([
         { id: 1, name: "John Doe", email: "johndoe@example.com" },
         { id: 2, name: "Jane Smith", email: "janesmith@example.com" },
         { id: 3, name: "Bob Johnson", email: "bobjohnson@example.com" },
       ]);
-      console.log(data); */
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -69,6 +79,12 @@ function HomePage() {
           >
             Añadir Persona
           </div>
+          <div
+            className="flex flex-col content-center justify-center w-48 h-12 mr-10 font-bold text-center text-white bg-green-500 rounded-2xl text-md hover:bg-green-900"
+            onClick={() => fetchData()}
+          >
+            Recargar
+          </div>
         </div>
         <div className="m-5 overflow-hidden border border-gray-200 rounded-lg shadow-md">
           <table className="w-full text-sm text-left text-gray-500 bg-white border-collapse">
@@ -87,7 +103,7 @@ function HomePage() {
               </tr>
             </thead>
             <tbody className="border-t border-gray-100 divide-y divide-gray-100">
-              {data.map((item) => (
+              {data?.map((item) => (
                 <PersonTableItem
                   id={item.id}
                   item={item}
