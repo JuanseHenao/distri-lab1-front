@@ -16,7 +16,7 @@ function EditModal({ selectedPerson, closeEditModal }) {
     e.preventDefault();
 
     try {
-      const response = await axios.put("http://localhost:5000", formData);
+      const response = await axios.put("http://127.0.0.1:5000", formData);
       console.log(response.data); // Manejar la respuesta del backend
       closeEditModal(); // Cerrar el formulario flotante
     } catch (error) {

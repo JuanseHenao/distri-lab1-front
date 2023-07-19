@@ -24,7 +24,7 @@ function CreateModal({ closeCreateModal }) {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000", formData);
+      const response = await axios.post("http://127.0.0.1:5000", formData);
       console.log(response.data); // Manejar la respuesta del backend
       closeCreateModal(); // Cerrar el formulario flotante
     } catch (error) {
