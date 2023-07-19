@@ -10,6 +10,12 @@ function HomePage() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [selectedPerson, setSelectedPerson] = useState(null);
 
+  const config = {
+    headers: {
+      Accept: "application/json", // Establecer el tipo de contenido que el servidor debe devolver
+    },
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -34,7 +40,7 @@ function HomePage() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:5000");
+      const response = await axios.get("http://127.0.0.1:5000", config);
       console.log(response);
       setData(response.data);
       /* setData([
@@ -58,29 +64,29 @@ function HomePage() {
         <div className="flex justify-between w-full m-5">
           <h1 className="text-xl font-bold">Personas</h1>
           <div
-            class="h-12 w-48 rounded-2xl bg-green-500 text-md font-bold text-white mr-10 text-center flex justify-center content-center flex-col hover:bg-green-900"
+            className="flex flex-col content-center justify-center w-48 h-12 mr-10 font-bold text-center text-white bg-green-500 rounded-2xl text-md hover:bg-green-900"
             onClick={() => openCreateModal()}
           >
             Añadir Persona
           </div>
         </div>
-        <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
-          <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
-            <thead class="bg-gray-50">
+        <div className="m-5 overflow-hidden border border-gray-200 rounded-lg shadow-md">
+          <table className="w-full text-sm text-left text-gray-500 bg-white border-collapse">
+            <thead className="bg-gray-50">
               <tr>
-                <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                   Name
                 </th>
-                <th scope="col" class="px-6 py-4 font-medium text-gray-900">
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">
                   Email
                 </th>
                 <th
                   scope="col"
-                  class="px-6 py-4 font-medium text-gray-900"
+                  className="px-6 py-4 font-medium text-gray-900"
                 ></th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+            <tbody className="border-t border-gray-100 divide-y divide-gray-100">
               {data.map((item) => (
                 <PersonTableItem
                   id={item.id}
